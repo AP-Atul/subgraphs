@@ -48,6 +48,54 @@ dataSources:
       file: ./src/handlers/controller.ts
   {{/controllers}}
 
+  {{#rewards}}
+  - kind: ethereum/contract
+    name: {{ name }}
+    network: {{ chain }}
+    source:
+      address: "{{ address }}"
+      abi: StakingRewards
+      startBlock: {{ startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Token
+        - RewardToken
+        - YieldAggregator
+        - UsageMetricsDailySnapshot
+        - FinancialsDailySnapshot
+        - VaultFee
+        - Vault
+        - VaultDailySnapshot
+        - Deposit
+        - Withdraw
+        - _Strategy
+        - _User
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: BadgerSett
+          file: ./abis/BadgerSett.json
+        - name: BadgerController
+          file: ./abis/BadgerController.json
+        - name: BadgerStrategy
+          file: ./abis/BadgerStrategy.json
+        - name: CalculationsCurve
+          file: ./abis/CalculationsCurve.json
+        - name: CalculationsSushi
+          file: ./abis/CalculationsSushiSwap.json
+        - name: StakingRewards
+          file: ./abis/StakingRewards.json
+      eventHandlers:
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: RewardAdded(uint256)
+          handler: handleRewardAdded
+      file: ./src/handlers/reward.ts
+  {{/rewards}}
+
 # dynamic sett, created in controller.ts
 templates:
   - kind: ethereum/contract

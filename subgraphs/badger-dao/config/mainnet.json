@@ -46,5 +46,12 @@
       "address": "0xa54d8a596B4022CC4436b692C8ea0E342405eB6e",
       "startBlock": "14412318"
     }
+  ],
+  "rewards": [
+    {
+      "name": "StakingRewards",
+      "address": "0x0c79406977314847A9545B11783635432D7fe019",
+      "startBlock": 11380897
+    }
   ]
 }

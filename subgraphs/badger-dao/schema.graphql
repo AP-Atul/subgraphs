@@ -511,7 +511,7 @@ type Withdraw implements Event @entity {
   vault: Vault!
 }
 
-## Private entitites
+## Private entities
 
 # Tracking every strategy of the vault
 type _Strategy @entity {

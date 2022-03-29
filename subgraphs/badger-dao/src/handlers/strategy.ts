@@ -68,7 +68,7 @@ export function handleSetPerformanceFee(call: SetPerformanceFeeGovernanceCall): 
   }
 }
 
-export function handleSetWithdrawFee(call: SetWithdrawalFeeCall): void {
+export function handleSetWithdrawalFee(call: SetWithdrawalFeeCall): void {
   const strategyAddress = call.to;
   const strategy = _Strategy.load(strategyAddress.toHex());
 
