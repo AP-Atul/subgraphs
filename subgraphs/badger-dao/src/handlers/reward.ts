@@ -59,7 +59,7 @@ export function handleRewardAdded(event: RewardAdded): void {
   let protocolRevenue = totalRevenue.minus(supplySideRevenue);
 
   let rewardToken = getOrCreateReward(rewardTokenAddress);
-  let rewardTokenDecimals = BIGINT_ZERO.pow(rewardToken.decimals as u8);
+  let rewardTokenDecimals = BigInt.fromI32(10).pow(rewardToken.decimals as u8);
   let rewardTokenPrice = getUsdPriceOfToken(rewardTokenAddress);
 
   financialMetrics.supplySideRevenueUSD = financialMetrics.supplySideRevenueUSD.plus(
