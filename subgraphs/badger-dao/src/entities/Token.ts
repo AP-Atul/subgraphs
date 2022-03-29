@@ -31,9 +31,10 @@ export function getOrCreateReward(id: Address): RewardToken {
 
   token = new RewardToken(id.toHex());
 
-  token.name = "";
-  token.symbol = "";
-  token.decimals = DEFAULT_DECIMALS;
+  let erc20Contract = ERC20.bind(id);
+  token.name = readValue<string>(erc20Contract.try_name(), "");
+  token.symbol = readValue<string>(erc20Contract.try_symbol(), "");
+  token.decimals = readValue<i32>(erc20Contract.try_decimals(), DEFAULT_DECIMALS);
   token.type = RewardTokenType.DEPOSIT;
   token.save();
 
